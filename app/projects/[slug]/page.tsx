@@ -27,11 +27,11 @@ export default async function ProjectDetailPage({
     <main
       className={`${montserrat.className} min-h-screen bg-[#F7F1E8] text-[#162b26]`}
     >
-      <div className="mx-auto w-full max-w-[1520px] px-6 py-10 sm:px-10 sm:py-14 md:px-14 lg:px-18 lg:py-16 xl:px-24">
+      <div className="mx-auto w-full max-w-[980px] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10 lg:py-9">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
             href="/#projects"
-            className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-6 py-3 text-base font-semibold text-[#0F4C45] transition hover:bg-[#0F4C45] hover:text-white"
+            className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-3.5 py-1.5 text-[0.82rem] font-semibold text-[#0F4C45] transition hover:bg-[#0F4C45] hover:text-white sm:px-4 sm:text-[0.88rem]"
           >
             Back to Projects
           </Link>
@@ -43,7 +43,7 @@ export default async function ProjectDetailPage({
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-[#043439] px-6 py-3 text-base font-semibold text-white transition hover:opacity-90"
+                className="rounded-full bg-[#043439] px-3.5 py-1.5 text-[0.82rem] font-semibold text-white transition hover:opacity-90 sm:px-4 sm:text-[0.88rem]"
               >
                 {link.label}
               </a>
@@ -51,63 +51,63 @@ export default async function ProjectDetailPage({
           </div>
         </div>
 
-        <header className="mt-12 max-w-[920px]">
-          <p className="text-base font-semibold uppercase tracking-[0.32em] text-[#0F4C45] sm:text-[1.05rem] lg:text-[1.2rem]">
+        <header className="mt-7 max-w-[680px]">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[#0F4C45] sm:text-[0.74rem]">
             Project Detail
           </p>
 
-          <h1 className="mt-6 text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-[5.4rem]">
+          <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[0.98] tracking-tight sm:text-[2.3rem] lg:text-[2.8rem]">
             {project.title}
           </h1>
 
-          <p className="mt-8 text-xl leading-9 text-[#3E514D] lg:text-[1.42rem] lg:leading-[2.6rem]">
+          <p className="mt-4 max-w-[640px] text-[0.94rem] leading-7 text-[#3E514D] sm:text-[0.98rem]">
             {project.summary}
           </p>
         </header>
 
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-6 flex flex-wrap gap-2.5">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-5 py-3 text-base font-semibold text-[#0F4C45]"
+              className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-3 py-1.5 text-[0.76rem] font-semibold text-[#0F4C45] sm:text-[0.82rem]"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <section className="mt-14 rounded-[2rem] border border-dashed border-[#0F4C45]/18 bg-[#F7F1E8] px-6 py-18 text-center text-lg font-semibold text-[#6B7B77] sm:py-24">
+        <section className="mt-8 rounded-[1.25rem] border border-dashed border-[#0F4C45]/18 bg-[#F7F1E8] px-4 py-10 text-center text-[0.92rem] font-semibold text-[#6B7B77] sm:py-12">
           Project image gallery placeholder
         </section>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:gap-10">
+        <div className="mt-8 grid grid-cols-1 gap-5 lg:gap-6">
           {project.sections.map((section) => (
             <section
               key={section.title}
-              className="rounded-[2rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-8 shadow-[0_20px_50px_rgba(22,43,38,0.05)] sm:p-10"
+              className="rounded-[1.25rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 shadow-[0_12px_28px_rgba(22,43,38,0.05)] sm:p-6"
             >
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-[2.15rem]">
+              <h2 className="text-[1.22rem] font-extrabold tracking-tight sm:text-[1.4rem]">
                 {section.title}
               </h2>
 
               {section.type === "text" ? (
-                <div className="mt-6 space-y-5 text-lg leading-8 text-[#3E514D] sm:text-xl sm:leading-9">
+                <div className="mt-3.5 space-y-3.5 text-[0.9rem] leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
                   {section.body.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
               ) : (
-                <div className="mt-6">
+                <div className="mt-4">
                   {section.intro ? (
-                    <p className="text-lg leading-8 text-[#3E514D] sm:text-xl sm:leading-9">
+                    <p className="text-[0.9rem] leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
                       {section.intro}
                     </p>
                   ) : null}
 
-                  <ul className="mt-6 space-y-4 text-lg leading-8 text-[#3E514D] sm:text-xl sm:leading-9">
+                  <ul className="mt-4 space-y-2.5 text-[0.9rem] leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
                     {section.items.map((item) => (
                       <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#0F4C45]" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0F4C45]" />
                         <span>{item}</span>
                       </li>
                     ))}
