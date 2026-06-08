@@ -18,15 +18,6 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const focusAreas = [
-  "Accessible Interfaces",
-  "Front-End Engineering",
-  "UX-Informed Development",
-  "Mapping Experiences",
-  "Digital Strategy",
-  "Workflow Optimization",
-];
-
 const socialLinks = [
   {
     label: "GitHub",
@@ -37,6 +28,32 @@ const socialLinks = [
     href: "https://www.linkedin.com/in/brittnedanielle/",
   },
 ];
+
+function GitHubIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="currentColor"
+    >
+      <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.2-3.37-1.2-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.09 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.36 1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.71 1.03 1.62 1.03 2.74 0 3.96-2.34 4.82-4.57 5.08.36.32.69.95.69 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="currentColor"
+    >
+      <path d="M6.94 8.5a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44ZM8.5 18.5H5.38V9.63H8.5v8.87ZM18.62 18.5H15.5v-4.32c0-1.03-.02-2.36-1.44-2.36-1.44 0-1.66 1.13-1.66 2.29v4.39H9.28V9.63h2.99v1.21h.04c.42-.79 1.43-1.62 2.95-1.62 3.15 0 3.73 2.08 3.73 4.79v4.49ZM20.18 2H3.82A1.8 1.8 0 0 0 2 3.79v16.42C2 21.2 2.8 22 3.79 22h16.39A1.8 1.8 0 0 0 22 20.21V3.79A1.8 1.8 0 0 0 20.18 2Z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -223,6 +240,21 @@ export default function Home() {
                 Contact Me
               </a>
             </div>
+
+            <div className="mt-4 flex items-center gap-2.5">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] text-[#0F4C45] transition hover:-translate-y-0.5 hover:border-[#0F4C45]/25 hover:bg-[#0F4C45] hover:text-white"
+                >
+                  {link.label === "GitHub" ? <GitHubIcon /> : <LinkedInIcon />}
+                </a>
+              ))}
+            </div>
           </div>
 
           <div className="flex items-center justify-center">
@@ -259,15 +291,25 @@ export default function Home() {
 
       <section
         id="about"
-        className="scroll-mt-24 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
       >
-        <div className="mx-auto grid w-full max-w-[1100px] grid-cols-1 gap-8 px-6 sm:px-8 md:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.58fr)] lg:gap-12 lg:px-12 xl:max-w-[1160px] xl:gap-14 xl:px-14">
-          <div className="max-w-[610px]">
+        <div className="absolute inset-0">
+          <Image
+            src="/backgroundROMA.png"
+            alt="Scenic Rome view"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto flex w-full max-w-[1100px] justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:max-w-[1160px] xl:px-14">
+          <div className="w-full max-w-[860px] rounded-[1.15rem] border border-[#0F4C45]/12 bg-[#DDE7DE]/92 p-5 text-center shadow-[0_16px_34px_rgba(22,43,38,0.08)] backdrop-blur-[2px] sm:p-6 lg:p-7">
             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[#0F4C45] sm:text-[0.74rem] lg:text-[0.78rem]">
               About
             </p>
 
-            <h2 className="mt-3.5 max-w-[12ch] text-[1.75rem] font-extrabold leading-[0.97] tracking-tight sm:text-[2.15rem] lg:text-[2.55rem]">
+            <h2 className="mx-auto mt-3.5 max-w-[12ch] text-[1.75rem] font-extrabold leading-[0.97] tracking-tight sm:text-[2.15rem] lg:text-[2.55rem]">
               Strategy, design, and front-end craft.
             </h2>
 
@@ -304,30 +346,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-
-          <aside className="lg:pt-8 xl:pt-10">
-            <div className="rounded-[1.15rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-4.5 shadow-[0_16px_34px_rgba(22,43,38,0.06)] sm:p-5">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#0F4C45] sm:text-[0.74rem]">
-                Focus Areas
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {focusAreas.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-2.5 py-1.5 text-[0.68rem] font-semibold text-[#0F4C45] sm:text-[0.74rem]"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <p className="mt-5 text-[0.82rem] leading-5.5 text-[#3E514D]">
-                I care most about building interfaces that feel clear, useful,
-                and intuitive from the very first interaction.
-              </p>
-            </div>
-          </aside>
         </div>
       </section>
 
@@ -415,15 +433,6 @@ export default function Home() {
               >
                 Email Me
               </a>
-
-              <a
-                href="https://brittne.myportfolio.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-[#0F4C45] px-5 py-2 text-[0.82rem] font-semibold text-[#0F4C45] transition hover:bg-[#0F4C45] hover:text-white lg:px-6 lg:py-2.5 lg:text-[0.88rem]"
-              >
-                View Portfolio
-              </a>
             </div>
           </div>
 
@@ -453,25 +462,6 @@ export default function Home() {
                   <p className="mt-1.5 text-[0.9rem] font-semibold sm:text-[0.95rem]">
                     Bellevue, WA
                   </p>
-                </div>
-
-                <div>
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-[#6B7B77]">
-                    Profiles
-                  </p>
-                  <div className="mt-2.5 flex flex-wrap gap-2.5">
-                    {socialLinks.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-3 py-1.5 text-[0.68rem] font-semibold text-[#0F4C45] transition hover:bg-[#0F4C45] hover:text-white sm:text-[0.72rem]"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
