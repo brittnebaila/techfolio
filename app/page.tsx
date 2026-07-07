@@ -76,15 +76,24 @@ export default function Home() {
     let cueHidden = false;
 
     const updateActiveSection = () => {
-      const navOffset = 120;
-      const scrollPosition = window.scrollY + navOffset;
-      let currentSection = sectionIds[0];
+      const headerOffset = 112;
+      const viewportAnchor =
+        window.scrollY + headerOffset + (window.innerHeight - headerOffset) * 0.28;
+      let currentSection = sectionIds[0] ?? "home";
 
-      sections.forEach((section) => {
-        if (scrollPosition >= section.offsetTop) {
+      for (const section of sections) {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (viewportAnchor >= sectionTop && viewportAnchor < sectionBottom) {
+          currentSection = section.id;
+          break;
+        }
+
+        if (viewportAnchor >= sectionTop) {
           currentSection = section.id;
         }
-      });
+      }
 
       setActiveSection((prev) =>
         prev === currentSection ? prev : currentSection
@@ -291,20 +300,10 @@ export default function Home() {
 
       <section
         id="about"
-        className="relative scroll-mt-24 overflow-hidden bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
+        className="scroll-mt-24 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
       >
-        <div className="absolute inset-0">
-          <Image
-            src="/backgroundROMA.png"
-            alt="Scenic Rome view"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto flex w-full max-w-[1100px] justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:max-w-[1160px] xl:px-14">
-          <div className="w-full max-w-[860px] rounded-[1.15rem] border border-[#0F4C45]/12 bg-[#DDE7DE]/92 p-5 text-center shadow-[0_16px_34px_rgba(22,43,38,0.08)] backdrop-blur-[2px] sm:p-6 lg:p-7">
+        <div className="mx-auto flex w-full max-w-[1100px] justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:max-w-[1160px] xl:px-14">
+          <div className="w-full max-w-[860px] rounded-[1.15rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 text-center shadow-[0_16px_34px_rgba(22,43,38,0.06)] sm:p-6 lg:p-7">
             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[#0F4C45] sm:text-[0.74rem] lg:text-[0.78rem]">
               About
             </p>
