@@ -29,3 +29,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 7rem;
 }
+
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}

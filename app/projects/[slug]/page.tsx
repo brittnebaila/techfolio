@@ -1038,13 +1038,30 @@ export default async function ProjectDetailPage({
       className={`${montserrat.className} min-h-screen bg-[#F7F1E8] text-[#162b26]`}
     >
       <div className="mx-auto w-full max-w-[980px] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10 lg:py-9">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col gap-4">
           <Link
             href="/#projects"
-            className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-3.5 py-1.5 text-[0.82rem] font-semibold text-[#0F4C45] transition hover:bg-[#0F4C45] hover:text-white sm:px-4 sm:text-[0.88rem]"
+            className="inline-flex w-fit items-center gap-2 text-[0.76rem] font-semibold uppercase tracking-[0.16em] text-[#0F4C45] transition hover:text-[#043439] sm:text-[0.8rem]"
           >
-            Back to Projects
+            <span aria-hidden="true">←</span>
+            <span>Back Home</span>
           </Link>
+
+          <div className="mx-auto flex w-fit flex-wrap items-center justify-center gap-1 rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] p-1.5 shadow-[0_12px_28px_rgba(22,43,38,0.06)]">
+            {projects.map((navProject) => (
+              <Link
+                key={navProject.slug}
+                href={`/projects/${navProject.slug}`}
+                className={`rounded-full px-3.5 py-2 text-[0.72rem] font-semibold transition sm:px-4 sm:text-[0.78rem] ${
+                  navProject.slug === project.slug
+                    ? "bg-[#043439] text-white shadow-[0_10px_24px_rgba(4,52,57,0.2)]"
+                    : "text-[#0F4C45] hover:bg-[#0F4C45]/8"
+                }`}
+              >
+                {navProject.shortTitle}
+              </Link>
+            ))}
+          </div>
 
           <div className="flex flex-wrap gap-3">
             {project.links?.map((link) => (

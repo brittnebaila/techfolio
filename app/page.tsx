@@ -29,6 +29,36 @@ const socialLinks = [
   },
 ];
 
+const projectCardImages: Record<
+  string,
+  { src: string; alt: string; width: number; height: number; contain?: boolean }
+> = {
+  StreetEase: {
+    src: "/StreetEase/StreetEase Updated UI.png",
+    alt: "StreetEase interface preview",
+    width: 1907,
+    height: 507,
+  },
+  "Washington State Website": {
+    src: "/Washington State Website/Homepage.png",
+    alt: "Washington State Website homepage preview",
+    width: 1907,
+    height: 958,
+  },
+  "Lake Hills Orthodontics": {
+    src: "/LHO/LHO B2B Marketing Brochure-1.png",
+    alt: "Lake Hills Orthodontics brochure preview",
+    width: 3300,
+    height: 2550,
+  },
+  ModCotta: {
+    src: "/ModCotta/Image 1.png",
+    alt: "ModCotta product and brand preview",
+    width: 600,
+    height: 384,
+  },
+};
+
 function GitHubIcon() {
   return (
     <svg
@@ -55,6 +85,37 @@ function LinkedInIcon() {
   );
 }
 
+function EmailIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 6.5h16v11H4z" />
+      <path d="m4.5 7 7.5 6 7.5-6" />
+    </svg>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="currentColor"
+    >
+      <path d="M12 2.75A6.25 6.25 0 0 0 5.75 9c0 4.35 5.18 10.72 5.4 10.99a1.1 1.1 0 0 0 1.7 0c.22-.27 5.4-6.64 5.4-10.99A6.25 6.25 0 0 0 12 2.75Zm0 8.9A2.65 2.65 0 1 1 12 6.35a2.65 2.65 0 0 1 0 5.3Z" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const scrollCueRef = useRef<HTMLAnchorElement>(null);
@@ -63,10 +124,10 @@ export default function Home() {
   const cueTextRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.slice(1));
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
+    const homeSection = document.getElementById("home");
+    const aboutSection = document.getElementById("about");
+    const projectsSection = document.getElementById("projects");
+    const contactSection = document.getElementById("contact");
 
     const cue = scrollCueRef.current;
     const cueDot = cueDotRef.current;
@@ -76,28 +137,32 @@ export default function Home() {
     let cueHidden = false;
 
     const updateActiveSection = () => {
-      const headerOffset = 112;
-      const viewportAnchor =
-        window.scrollY + headerOffset + (window.innerHeight - headerOffset) * 0.28;
-      let currentSection = sectionIds[0] ?? "home";
+      const nearPageBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 32;
+      const scrollMarker = window.scrollY + 140;
 
-      for (const section of sections) {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-
-        if (viewportAnchor >= sectionTop && viewportAnchor < sectionBottom) {
-          currentSection = section.id;
-          break;
-        }
-
-        if (viewportAnchor >= sectionTop) {
-          currentSection = section.id;
-        }
+      if (
+        nearPageBottom ||
+        (contactSection && scrollMarker >= contactSection.offsetTop)
+      ) {
+        setActiveSection("contact");
+        return;
       }
 
-      setActiveSection((prev) =>
-        prev === currentSection ? prev : currentSection
-      );
+      if (projectsSection && scrollMarker >= projectsSection.offsetTop) {
+        setActiveSection("projects");
+        return;
+      }
+
+      if (aboutSection && scrollMarker >= aboutSection.offsetTop) {
+        setActiveSection("about");
+        return;
+      }
+
+      if (homeSection) {
+        setActiveSection("home");
+      }
     };
 
     if (cue && cueDot && cuePebble && cueText) {
@@ -234,7 +299,7 @@ export default function Home() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="https://brittne.myportfolio.com/"
+                href="/Brittne%20Valdivia%20-%202026%20Resume.docx"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full bg-[#043439] px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 lg:px-7 lg:py-3 lg:text-[0.92rem]"
@@ -370,37 +435,55 @@ export default function Home() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 lg:mt-10 lg:gap-4 xl:gap-4">
-            {projects.map((project) => (
-              <Link
-                key={project.title}
-                href={`/projects/${project.slug}`}
-                className="group block w-full rounded-[1.05rem] border border-[#0F4C45]/12 bg-[#F7F1E8] p-3.5 text-center shadow-[0_14px_28px_rgba(22,43,38,0.05)] transition duration-200 hover:-translate-y-1 hover:border-[#0F4C45]/22 hover:shadow-[0_18px_34px_rgba(22,43,38,0.08)] sm:p-4"
-              >
-                <div className="mb-3 overflow-hidden rounded-[0.9rem] border border-dashed border-[#0F4C45]/18 bg-[#EEF3EE] transition-colors duration-200 group-hover:border-[#0F4C45]/28">
-                  <div className="flex h-[120px] items-center justify-center px-4 text-center text-[0.68rem] font-semibold text-[#6B7B77] transition-colors duration-200 group-hover:text-[#4F625E] sm:h-[140px] sm:text-[0.72rem] xl:h-[155px]">
-                    Project image placeholder
+            {projects.map((project) => {
+              const image = projectCardImages[project.shortTitle];
+
+              return (
+                <Link
+                  key={project.title}
+                  href={`/projects/${project.slug}`}
+                  className="group block w-full rounded-[1.05rem] border border-[#0F4C45]/12 bg-[#F7F1E8] p-3.5 text-center shadow-[0_14px_28px_rgba(22,43,38,0.05)] transition duration-200 hover:-translate-y-1 hover:border-[#0F4C45]/22 hover:shadow-[0_18px_34px_rgba(22,43,38,0.08)] sm:p-4"
+                >
+                  <div className="mb-3 overflow-hidden rounded-[0.9rem] bg-[#EEF3EE]">
+                    <div className="relative h-[120px] sm:h-[140px] xl:h-[155px]">
+                      {image ? (
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                          className={`transition-transform duration-300 group-hover:scale-[1.02] ${
+                            image.contain ? "object-contain p-2" : "object-cover"
+                          }`}
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center px-4 text-center text-[0.68rem] font-semibold text-[#6B7B77] transition-colors duration-200 group-hover:text-[#4F625E] sm:text-[0.72rem]">
+                          Project image placeholder
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <h3 className="text-[0.95rem] font-extrabold tracking-tight text-[#162b26] transition-colors duration-200 group-hover:text-[#0F4C45] sm:text-[1rem]">
-                  {project.shortTitle}
-                </h3>
-                <p className="mt-2 text-[0.72rem] leading-5 text-[#3E514D] sm:text-[0.76rem]">
-                  {project.cardSummary}
-                </p>
+                  <h3 className="text-[0.95rem] font-extrabold tracking-tight text-[#162b26] transition-colors duration-200 group-hover:text-[#0F4C45] sm:text-[1rem]">
+                    {project.shortTitle}
+                  </h3>
+                  <p className="mt-2 text-[0.72rem] leading-5 text-[#3E514D] sm:text-[0.76rem]">
+                    {project.cardSummary}
+                  </p>
 
-                <div className="mt-3 flex flex-wrap justify-center gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-2 py-1 text-[0.62rem] font-semibold text-[#0F4C45] sm:text-[0.66rem]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            ))}
+                  <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-[#0F4C45]/15 bg-[#F7F1E8] px-2 py-1 text-[0.62rem] font-semibold text-[#0F4C45] sm:text-[0.66rem]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -442,7 +525,12 @@ export default function Home() {
               </p>
 
               <div className="mt-5 space-y-4 text-[#162b26]">
-                <div>
+                <div className="flex items-start gap-3">
+                  <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] text-[#0F4C45]">
+                    <EmailIcon />
+                  </span>
+
+                  <div>
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-[#6B7B77]">
                     Email
                   </p>
@@ -452,21 +540,76 @@ export default function Home() {
                   >
                     brittnebaila@gmail.com
                   </a>
+                  </div>
                 </div>
 
-                <div>
+                <div className="flex items-start gap-3">
+                  <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] text-[#0F4C45]">
+                    <LocationIcon />
+                  </span>
+
+                  <div>
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-[#6B7B77]">
                     Location
                   </p>
                   <p className="mt-1.5 text-[0.9rem] font-semibold sm:text-[0.95rem]">
                     Bellevue, WA
                   </p>
+                  </div>
+                </div>
+
+                <div className="border-t border-[#0F4C45]/10 pt-4">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-[#6B7B77]">
+                    Profiles
+                  </p>
+
+                  <div className="mt-3 flex items-center gap-2.5">
+                    <a
+                      href="https://github.com/brittnebaila"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="GitHub"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] text-[#0F4C45] transition hover:-translate-y-0.5 hover:bg-[#0F4C45] hover:text-white"
+                    >
+                      <GitHubIcon />
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/in/brittnedanielle/"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="LinkedIn"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] text-[#0F4C45] transition hover:-translate-y-0.5 hover:bg-[#0F4C45] hover:text-white"
+                    >
+                      <LinkedInIcon />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </aside>
         </div>
       </section>
+
+      <footer className="border-t border-[#0F4C45]/10 bg-[#F7F1E8]">
+        <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center gap-3 px-6 py-6 text-center sm:px-8 md:px-10 lg:flex-row lg:justify-between lg:px-12 xl:max-w-[1160px] xl:px-14">
+          <p className="text-[0.72rem] font-medium tracking-[0.04em] text-[#6B7B77] sm:text-[0.78rem]">
+            © 2026 Brittne Valdivia. Built with Next.js and Tailwind CSS.
+          </p>
+
+          <div className="flex items-center gap-4 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#0F4C45] sm:text-[0.76rem]">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="transition hover:text-[#043439]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
