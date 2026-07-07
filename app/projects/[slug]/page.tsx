@@ -343,21 +343,6 @@ function StreetEasePage({
           interactions.
         </p>
       </section>
-
-      <section className="mt-8 overflow-hidden rounded-[1.25rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 text-center shadow-[0_12px_28px_rgba(22,43,38,0.05)] sm:p-6">
-        <Image
-          src="/streetmap.png"
-          alt="StreetEase map visualization"
-          width={6000}
-          height={3359}
-          className="h-auto w-full rounded-[1rem] border border-[#0F4C45]/12 bg-[#F7F1E8]"
-        />
-
-        <p className="mx-auto mt-5 max-w-[760px] text-[0.9rem] font-semibold leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
-          StreetEase is an ongoing project focused on accessibility, geospatial
-          data, and resilient web application design.
-        </p>
-      </section>
     </>
   );
 }
