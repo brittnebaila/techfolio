@@ -280,7 +280,7 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative min-h-screen scroll-mt-24 bg-[#F7F1E8] sm:scroll-mt-28"
+        className="relative min-h-screen scroll-mt-10 bg-[#F7F1E8] sm:scroll-mt-14"
       >
         <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 lg:py-10 xl:max-w-[1220px] xl:gap-10 xl:px-14">
           <div className="mx-auto w-full max-w-[420px] text-left">
@@ -365,7 +365,7 @@ export default function Home() {
 
       <section
         id="about"
-        className="scroll-mt-24 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
+        className="scroll-mt-10 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-14 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
       >
         <div className="mx-auto flex w-full max-w-[1100px] justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:max-w-[1160px] xl:px-14">
           <div className="w-full max-w-[860px] rounded-[1.15rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 text-center shadow-[0_16px_34px_rgba(22,43,38,0.06)] sm:p-6 lg:p-7">
@@ -415,7 +415,7 @@ export default function Home() {
 
       <section
         id="projects"
-        className="scroll-mt-24 bg-[#DDE7DE] pb-20 pt-10 sm:scroll-mt-28 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-16"
+        className="scroll-mt-10 bg-[#DDE7DE] pb-20 pt-10 sm:scroll-mt-14 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-16"
       >
         <div className="mx-auto w-full max-w-[1060px] px-6 sm:px-8 md:px-10 lg:px-10 xl:max-w-[1320px] xl:px-12">
           <div className="max-w-[660px]">
@@ -490,7 +490,7 @@ export default function Home() {
 
       <section
         id="contact"
-        className="scroll-mt-24 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-28 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
+        className="scroll-mt-10 bg-[#F7F1E8] pb-16 pt-7 sm:scroll-mt-14 sm:pb-20 sm:pt-9 lg:pb-24 lg:pt-12"
       >
         <div className="mx-auto grid w-full max-w-[1100px] grid-cols-1 gap-8 px-6 sm:px-8 md:px-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(260px,0.6fr)] lg:gap-12 lg:px-12 xl:max-w-[1160px] xl:gap-14 xl:px-14">
           <div className="max-w-[610px]">
