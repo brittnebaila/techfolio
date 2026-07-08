@@ -282,7 +282,7 @@ export default function Home() {
         id="home"
         className="relative min-h-screen scroll-mt-10 bg-[#F7F1E8] sm:scroll-mt-14"
       >
-        <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 lg:py-10 xl:max-w-[1220px] xl:gap-10 xl:px-14">
+        <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 pb-8 pt-20 sm:px-8 sm:py-10 md:px-10 md:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 lg:py-10 xl:max-w-[1220px] xl:gap-10 xl:px-14">
           <div className="mx-auto w-full max-w-[420px] text-left">
             <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#0F4C45] sm:text-[0.74rem] lg:text-[0.8rem]">
               Front-End Developer • UI/UX
@@ -592,22 +592,10 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-[#0F4C45]/10 bg-[#F7F1E8]">
-        <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center gap-3 px-6 py-6 text-center sm:px-8 md:px-10 lg:flex-row lg:justify-between lg:px-12 xl:max-w-[1160px] xl:px-14">
+        <div className="mx-auto flex w-full max-w-[1100px] justify-center px-6 py-6 text-center sm:px-8 md:px-10 lg:px-12 xl:max-w-[1160px] xl:px-14">
           <p className="text-[0.72rem] font-medium tracking-[0.04em] text-[#6B7B77] sm:text-[0.78rem]">
             © 2026 Brittne Valdivia. Built with Next.js and Tailwind CSS.
           </p>
-
-          <div className="flex items-center gap-4 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#0F4C45] sm:text-[0.76rem]">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition hover:text-[#043439]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </main>
