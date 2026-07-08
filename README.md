@@ -1,4 +1,5 @@
 # Brittne Valdivia Portfolio
+A customizable portfolio template for developers, designers, and career changers who want a clean way to showcase projects, skills, and case studies.
 
 Use this template for your own portfolio. Please replace all personal content and keep credit in your README with a link back to this repository.
 
