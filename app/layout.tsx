@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://brittnevaldivia.com"),
   title: "Brittne Valdivia | Front-End Developer",
   description:
     "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
@@ -27,12 +28,22 @@ export const metadata: Metadata = {
       "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
     siteName: "Brittne Valdivia Portfolio",
     type: "website",
+    url: "https://brittnevaldivia.com",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Brittne Valdivia portfolio preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Brittne Valdivia | Front-End Developer",
     description:
       "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
+    images: ["/twitter-image"],
   },
 };
 
