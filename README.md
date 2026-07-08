@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Brittne Valdivia Portfolio
+
+Use this template for your own portfolio. Please replace all personal content and keep credit in your README with a link back to this repository.
+
+A one-page portfolio built with Next.js and Tailwind CSS, with custom internal project pages for featured work.
+
+This repo is also available as a starting point for others who want to build their own portfolio site.
+
+## Stack
+
+- Next.js
+- React
+- Tailwind CSS
+- Vercel
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.tsx` - homepage and one-page sections
+- `app/projects/[slug]/page.tsx` - internal project detail pages
+- `app/projects/project-data.ts` - project metadata
+- `public/` - images, icons, resume, and project assets
 
-## Learn More
+## Forking This Portfolio
 
-To learn more about Next.js, take a look at the following resources:
+You are welcome to fork this portfolio and use it as a starting point for your own.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Please note:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- The code in this repository is licensed under the MIT License.
+- Personal content is not included in that license unless otherwise noted.
+- Please replace all personal content with your own before publishing.
+- Please keep credit to Brittne Valdivia in your README and link back to this repository.
 
-## Deploy on Vercel
+Examples of personal content that should be replaced:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- portfolio copy and biography text
+- project descriptions and case-study content
+- resume files
+- personal images, branding, icons, and graphics
+- contact details and social links
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Recommended Credit
+
+If you use this as a template, a short note like this is appreciated:
+
+```md
+Portfolio template adapted from Brittne Valdivia:
+https://github.com/brittnebaila/techfolio
+```
+
+## Deployment
+
+This project is set up to deploy easily on Vercel.
+
+1. Push your fork to GitHub.
+2. Import the repository into Vercel.
+3. Update the content, assets, metadata, and domain settings for your own site.
+
+## License
+
+The source code is licensed under the [MIT License](./LICENSE).
