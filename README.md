@@ -9,7 +9,7 @@ Use this template for your own portfolio. Please replace all personal content an
 ![Homepage preview](./public/Homepage.png)
 ![Project page preview](./public/Project%20Page.png)
 
-A one-page portfolio built with Next.js and Tailwind CSS, with custom internal project pages for featured work. This repo is also structured to work as a reusable starter for other developers and designers building a portfolio site.
+A customizable portfolio built with Next.js and Tailwind CSS, with custom internal project pages for featured work. This repo is also structured to work as a reusable starter for other developers and designers building a portfolio site.
 
 ## Stack
 
