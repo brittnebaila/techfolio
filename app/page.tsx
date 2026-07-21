@@ -299,7 +299,7 @@ export default function Home() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="/Brittne%20Valdivia%20-%202026%20Resume.docx"
+                href="/Brittne%20Valdivia%20-%202026%20SWE%20Resume.docx"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full bg-[#043439] px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 lg:px-7 lg:py-3 lg:text-[0.92rem]"
