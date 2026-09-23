@@ -63,7 +63,7 @@ export default function OpenGraphImage() {
                 color: "#0F4C45",
               }}
             >
-              Front-End Developer • UI/UX
+              GIS & Front-End Development
             </div>
           </div>
 
@@ -105,8 +105,8 @@ export default function OpenGraphImage() {
                   maxWidth: 560,
                 }}
               >
-                Thoughtful interfaces, accessible UX, and polished portfolio
-                projects built with Next.js and Tailwind CSS.
+                Spatial analysis, web mapping, and thoughtful interfaces.
+                Exploring places and making data useful.
               </div>
             </div>
 
@@ -161,7 +161,7 @@ export default function OpenGraphImage() {
                 fontWeight: 700,
               }}
             >
-              Portfolio Template
+              View My Work
             </div>
             <div
               style={{

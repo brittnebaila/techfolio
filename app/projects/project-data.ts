@@ -17,20 +17,89 @@ export type ProjectDetail = {
   shortTitle: string;
   summary: string;
   cardSummary: string;
+  status?: string;
+  visible?: boolean;
   tags: string[];
   links?: { label: string; href: string }[];
   sections: ProjectDetailSection[];
 };
 
-export const projects: ProjectDetail[] = [
+const allProjects: ProjectDetail[] = [
+  {
+    slug: "eastside-bike-routing",
+    title: "Eastside Bike Routing",
+    shortTitle: "Eastside Bike Routing",
+    status: "In progress",
+    summary:
+      "Exploring how public GIS data can help cyclists choose more comfortable routes on the Eastside. Starting with Redmond, I’m investigating how elevation, trail surfaces, and bicycle infrastructure can inform route choices beyond distance alone.",
+    cardSummary:
+      "In-progress GIS project exploring bicycle routing through public data and elevation analysis, with findings, QGIS work, and development notes documented on GitHub.",
+    tags: ["QGIS", "Spatial Analysis", "Elevation Data", "GIS"],
+    links: [
+      {
+        label: "Explore on GitHub",
+        href: "https://github.com/brittnebaila/Eastside-Bike-Routing",
+      },
+    ],
+    sections: [
+      {
+        type: "text",
+        title: "The Question",
+        body: [
+          "Could a slightly longer route be a better ride? Hills, surface conditions, and bicycle infrastructure all affect how comfortable a route feels. I’m exploring how public city data can make those tradeoffs easier to understand.",
+          "I began with Bellevue trail data to learn QGIS, then moved to Redmond’s trails, street centerlines, and bicycle facilities. The project is currently in the GIS exploration and elevation-analysis stage, with a web mapping and route-comparison prototype planned next.",
+        ],
+      },
+      {
+        type: "list",
+        title: "What I’ve Done So Far",
+        items: [
+          "Explored municipal GIS layers through attribute queries, spatial selections, filtering, and categorized map styling.",
+          "Documented candidate routing attributes, including trail surface, bicycle access, existing facility type, and posted speed limits.",
+          "Investigated coded values and missing data, keeping existing bicycle infrastructure separate from planned facilities.",
+          "Combined two USGS 3DEP 1-meter elevation tiles into a virtual raster and calculated terrain slope as percent grade.",
+          "Tested an elevation profile along NE 24th Street to examine climbs and descents within a route segment.",
+        ],
+      },
+      {
+        type: "text",
+        title: "A Nearly Flat Route Can Still Have a Climb",
+        body: [
+          "An approximately 1.08 km test section of NE 24th Street starts and ends around 43 meters above sea level. Looking only at those endpoints would make it appear nearly flat.",
+          "The elevation profile tells a different story: a climb of about 14 meters to a crest near 730 meters, followed by a descent. The average climbing grade to that crest is approximately 1.9%.",
+          "This finding is shaping the next stage of the project: route analysis needs to account for changes within a segment and direction of travel, rather than relying only on the difference between start and end elevations.",
+        ],
+      },
+      {
+        type: "text",
+        title: "Turning Terrain into Useful Route Information",
+        body: [
+          "The 1-meter slope raster captures detailed changes across the study area, but terrain slope is not the same as the grade a cyclist experiences along a road or trail. The map is an exploratory analysis, not a route-difficulty rating.",
+          "My next step is to connect elevation samples to actual street and trail segments. I’m also documenting data limitations, such as unknown surface codes and speed-limit values that need verification before they can inform routing decisions.",
+        ],
+      },
+      {
+        type: "list",
+        title: "What’s Next",
+        intro: "Planned development builds on the GIS analysis already underway:",
+        items: [
+          "Prepare selected data as GeoJSON and display it in an interactive Leaflet map.",
+          "Explore PostGIS and a preliminary route suitability model using distance, grade, surface, and existing bicycle infrastructure.",
+          "Gather input from local cyclists to understand what makes a route feel comfortable.",
+          "Compare routes for a test origin and destination, explaining the tradeoffs and limitations of the available data.",
+        ],
+      },
+    ],
+  },
   {
     slug: "streetease",
     title: "StreetEase",
     shortTitle: "StreetEase",
+    status: "Prototype · Paused",
     summary:
-      "A web-based mapping tool designed to help users understand how steep nearby streets are around a chosen address. The goal is to make it easier for people with mobility limitations, disabilities, or difficulty walking to preview the terrain around a destination before they go.",
+      "An exploratory React and Leaflet prototype for previewing street grades around a destination, with accessibility in mind. Development is paused while I reassess geographic scope, elevation-data reliability, and the processing required to support address searches worldwide.",
     cardSummary:
-      "In-progress accessibility-focused mapping app that helps users visualize nearby street grades around a destination through a responsive, map-first web interface.",
+      "Paused React and Leaflet prototype exploring accessible street-grade visualization, location search, and the challenges of reliable elevation data.",
     tags: ["React", "Leaflet", "Accessibility", "Mapping UX"],
     links: [
       {
@@ -69,14 +138,14 @@ export const projects: ProjectDetail[] = [
         title: "Technical Challenges",
         body: [
           "StreetEase has been a strong exercise in working with real-world data constraints. One of the biggest challenges has been reliability. Public mapping and elevation APIs can time out, rate-limit requests, or return incomplete street-naming data, which makes building a smooth experience much more complex than with a static demo.",
-          "I’ve been working through those issues by restructuring the app to use a backend, adding caching, improving fallback behavior, and separating the frontend display logic from the data-processing pipeline.",
+          "I explored a backend, caching, and fallback handling to address these constraints. Supporting arbitrary addresses worldwide remains unresolved because of processing time, resource requirements, and inconsistent data coverage. Development is paused while I reconsider the scope.",
         ],
       },
       {
         type: "text",
-        title: "What I’m Learning",
+        title: "What I Learned",
         body: [
-          "This project is helping me deepen my understanding of frontend-to-backend architecture, geospatial data workflows, API resilience, and accessibility-centered product design.",
+          "This project deepened my understanding of frontend-to-backend architecture, geospatial data workflows, API resilience, and accessibility-centered product design.",
           "It has also reinforced how much product quality depends on gracefully handling messy external data, not just on building a clean interface.",
         ],
       },
@@ -170,6 +239,7 @@ export const projects: ProjectDetail[] = [
   },
   {
     slug: "modcotta",
+    visible: false,
     title: "ModCotta",
     shortTitle: "ModCotta",
     summary:
@@ -221,6 +291,9 @@ export const projects: ProjectDetail[] = [
     ],
   },
 ];
+
+// Hidden projects stay in source but are excluded from cards, navigation, and routes.
+export const projects = allProjects.filter((project) => project.visible !== false);
 
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug);

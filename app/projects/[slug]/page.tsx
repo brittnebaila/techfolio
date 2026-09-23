@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Montserrat } from "next/font/google";
 import { getProjectBySlug, projects } from "../project-data";
+import { EastsideBikeRoutingPage } from "../eastside-bike-routing";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -181,7 +182,7 @@ function StreetEasePage({
     <>
       <header className="mt-7 max-w-[720px]">
         <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[#0F4C45] sm:text-[0.74rem]">
-          Project Detail
+          Exploratory Prototype · Paused
         </p>
 
         <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[0.98] tracking-tight sm:text-[2.3rem] lg:text-[2.8rem]">
@@ -242,7 +243,7 @@ function StreetEasePage({
             </p>
 
             <div>
-              <p className="font-semibold text-[#162b26]">Current work includes:</p>
+              <p className="font-semibold text-[#162b26]">Prototype work includes:</p>
               <ul className="mt-3 space-y-2.5">
                 {[
                   "A responsive React frontend built for web-first use",
@@ -298,20 +299,20 @@ function StreetEasePage({
             reliability. Public mapping and elevation APIs can time out,
             rate-limit requests, or return incomplete street-naming data, which
             makes building a smooth experience much more complex than with a
-            static demo. I&apos;ve been working through those issues by
-            restructuring the app to use a backend, adding caching, improving
-            fallback behavior, and separating the frontend display logic from
-            the data-processing pipeline.
+            static demo. I explored a backend, caching, and fallback handling,
+            but supporting arbitrary addresses worldwide remains unresolved.
+            Processing time, resource requirements, and inconsistent data
+            coverage are central constraints.
           </p>
         </div>
 
         <div className="rounded-[1.25rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 shadow-[0_12px_28px_rgba(22,43,38,0.05)] sm:p-6">
           <h2 className="text-[1.22rem] font-extrabold tracking-tight sm:text-[1.4rem]">
-            What I&apos;m Learning
+            What I Learned
           </h2>
 
           <p className="mt-3.5 text-[0.9rem] leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
-            This project is helping me deepen my understanding of
+            This project deepened my understanding of
             frontend-to-backend architecture, geospatial data workflows, API
             resilience, and accessibility-centered product design. It has also
             reinforced how much product quality depends on gracefully handling
@@ -332,15 +333,14 @@ function StreetEasePage({
 
       <section className="mt-8 rounded-[1.25rem] border border-[#0F4C45]/12 bg-[#DDE7DE] p-5 shadow-[0_12px_28px_rgba(22,43,38,0.05)] sm:p-6">
         <h2 className="text-[1.22rem] font-extrabold tracking-tight sm:text-[1.4rem]">
-          What&apos;s Next
+          Why Development Is Paused
         </h2>
 
         <p className="mt-3.5 text-[0.9rem] leading-6.5 text-[#3E514D] sm:text-[0.94rem] sm:leading-7">
-          Next steps for StreetEase include improving the reliability of street
-          and elevation data, refining how unnamed streets are handled, making
-          the grade overlay denser and more accurate, and continuing to improve
-          the user experience around search, feedback states, and map
-          interactions.
+          The original concept aimed to support any address worldwide. I’ve
+          paused development to reassess that scope and the data and computing
+          resources it would require. A smaller geographic area is one possible
+          direction to evaluate before returning to the prototype.
         </p>
       </section>
     </>
@@ -1065,7 +1065,9 @@ export default async function ProjectDetailPage({
         <div className="flex flex-wrap gap-3">
           {project.links
             ?.filter((link) =>
-              project.slug === "streetease" ? link.label !== "View Code" : true
+              project.slug === "eastside-bike-routing"
+                ? false
+                : project.slug === "streetease" ? link.label !== "View Code" : true
             )
             .map((link) => (
               <a
@@ -1080,7 +1082,9 @@ export default async function ProjectDetailPage({
             ))}
         </div>
 
-        {project.slug === "streetease" ? (
+        {project.slug === "eastside-bike-routing" ? (
+          <EastsideBikeRoutingPage project={project} />
+        ) : project.slug === "streetease" ? (
           <StreetEasePage
             title={project.title}
             summary={project.summary}

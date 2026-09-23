@@ -33,6 +33,13 @@ const projectCardImages: Record<
   string,
   { src: string; alt: string; width: number; height: number; contain?: boolean }
 > = {
+  "Eastside Bike Routing": {
+    src: "/eastside-bike-routing/ne24th-elevation-profile.png",
+    alt: "NE 24th Street map and elevation profile showing a climb followed by a descent",
+    width: 1595,
+    height: 794,
+    contain: true,
+  },
   StreetEase: {
     src: "/StreetEase/StreetEase Updated UI.png",
     alt: "StreetEase interface preview",
@@ -285,7 +292,7 @@ export default function Home() {
         <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 pb-8 pt-20 sm:px-8 sm:py-10 md:px-10 md:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 lg:py-10 xl:max-w-[1220px] xl:gap-10 xl:px-14">
           <div className="mx-auto w-full max-w-[420px] text-left">
             <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#0F4C45] sm:text-[0.74rem] lg:text-[0.8rem]">
-              Front-End Developer • UI/UX
+              GIS & Front-End Development
             </p>
 
             <h1 className="max-w-[8ch] text-[2.15rem] font-extrabold leading-[0.92] tracking-tight sm:text-[2.9rem] md:text-[3.5rem] lg:text-[3.9rem] xl:text-[4.35rem]">
@@ -293,8 +300,8 @@ export default function Home() {
             </h1>
 
             <p className="mt-5 max-w-[25rem] text-[0.96rem] leading-7 text-[#3E514D] lg:text-[1rem] lg:leading-[1.9rem]">
-              I build thoughtful digital experiences with a focus on front-end
-              development, accessibility, and mapping tools.
+              I bring spatial data and thoughtful interfaces together through
+              GIS exploration, web mapping, and front-end development.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -373,40 +380,34 @@ export default function Home() {
               About
             </p>
 
-            <h2 className="mx-auto mt-3.5 max-w-[12ch] text-[1.75rem] font-extrabold leading-[0.97] tracking-tight sm:text-[2.15rem] lg:text-[2.55rem]">
-              Strategy, design, and front-end craft.
+            <h2 className="mx-auto mt-3.5 max-w-[20ch] text-[1.75rem] font-extrabold leading-[0.97] tracking-tight sm:text-[2.15rem] lg:text-[2.55rem]">
+              Spatial thinking. Thoughtful interfaces.
             </h2>
 
             <div className="mt-5 space-y-4 text-[0.88rem] leading-6.5 text-[#3E514D] lg:text-[0.94rem] lg:leading-[1.72rem]">
               <p>
-                I’m a front-end developer with a background in marketing,
-                digital media, and design. For years, I worked in client-facing
-                and B2B creative roles where I developed websites, managed
-                visual branding, and helped businesses communicate more
-                effectively online. Over time, I became increasingly drawn to
-                the technical side of building digital experiences and
-                transitioned into software engineering.
+                I’m building toward a career in GIS engineering, bringing a
+                foundation in front-end development and a background in
+                marketing, digital media, and design. My work in client-facing
+                and B2B creative roles taught me how to understand user needs,
+                communicate clearly, and turn complex information into
+                something people can use.
               </p>
 
               <p>
-                A lot of my inspiration comes from maps, travel, and
-                navigation. I’ve always been fascinated by the way people
-                interact with places and information, whether that’s planning a
-                trip, exploring a new city, or designing tools that make
-                navigation more accessible and intuitive. That interest
-                eventually evolved into building map-based and
-                accessibility-focused projects that combine front-end
-                development with thoughtful user experience design.
+                Maps, travel, and navigation have always shaped my curiosity.
+                Today, I’m developing my GIS skills through hands-on work with
+                QGIS, public city datasets, and elevation analysis. My Eastside
+                Bike Routing project explores how spatial data can help people
+                understand the tradeoffs between bicycle routes.
               </p>
 
               <p>
-                Today, I focus on creating clean, user-centered interfaces with
-                technologies like React, Next.js, and Tailwind CSS while
-                continuing to expand my full stack development skills. I also
-                enjoy exploring modern AI-assisted development workflows using
-                tools like OpenAI Codex and ChatGPT to accelerate prototyping,
-                refine interfaces, and support rapid iteration throughout the
-                development process.
+                Front-end development remains an important part of my work.
+                I use React, Next.js, Tailwind CSS, and Leaflet to build
+                responsive interfaces and explore web mapping. I’m especially
+                interested in connecting spatial analysis with accessible,
+                useful experiences for the people who rely on it.
               </p>
             </div>
           </div>
@@ -423,18 +424,18 @@ export default function Home() {
               Projects
             </p>
 
-            <h2 className="mt-4 max-w-[11ch] text-[2rem] font-extrabold leading-[0.96] tracking-tight sm:text-[2.5rem] lg:text-[3rem]">
-              Selected work across web, UX, and digital design.
+            <h2 className="mt-4 max-w-[18ch] text-[2rem] font-extrabold leading-[0.96] tracking-tight sm:text-[2.5rem] lg:text-[3rem]">
+              Mapping, spatial analysis, and front-end work.
             </h2>
 
             <p className="mt-5 max-w-[34rem] text-[0.95rem] leading-7 text-[#3E514D] lg:text-[1rem] lg:leading-[1.85rem]">
-              A mix of front-end builds, accessibility-minded interfaces, and
-              design work shaped by real user needs, visual clarity, and
-              practical problem-solving.
+              GIS investigations and web mapping prototypes, alongside completed
+              front-end builds and professional design work. Each project
+              connects technical exploration with practical user needs.
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 lg:mt-10 lg:gap-4 xl:gap-4">
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:mt-10 lg:gap-4">
             {projects.map((project) => {
               const image = projectCardImages[project.shortTitle];
 
@@ -451,7 +452,7 @@ export default function Home() {
                           src={image.src}
                           alt={image.alt}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1320px) 50vw, 600px"
                           className={`transition-transform duration-300 group-hover:scale-[1.02] ${
                             image.contain ? "object-contain p-2" : "object-cover"
                           }`}
@@ -464,6 +465,11 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {project.status ? (
+                    <p className="mb-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[#0F4C45]">
+                      {project.status}
+                    </p>
+                  ) : null}
                   <h3 className="text-[0.95rem] font-extrabold tracking-tight text-[#162b26] transition-colors duration-200 group-hover:text-[#0F4C45] sm:text-[1rem]">
                     {project.shortTitle}
                   </h3>
@@ -503,9 +509,9 @@ export default function Home() {
             </h2>
 
             <p className="mt-4 max-w-[31rem] text-[0.88rem] leading-6.5 text-[#3E514D] lg:text-[0.94rem] lg:leading-[1.72rem]">
-              I’m always interested in opportunities involving front-end
-              development, user-focused design, accessibility, and creative
-              digital problem-solving.
+              I’m looking for opportunities in GIS, spatial data, and web
+              mapping, and I’m also open to front-end roles where thoughtful
+              interfaces and accessibility matter.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2.5">

@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brittnevaldivia.com"),
-  title: "Brittne Valdivia | Front-End Developer",
+  title: "Brittne Valdivia | GIS & Front-End Development",
   description:
-    "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
+    "GIS and front-end portfolio by Brittne Valdivia, featuring spatial analysis, web mapping, accessible interfaces, and responsive web projects.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
   openGraph: {
-    title: "Brittne Valdivia | Front-End Developer",
+    title: "Brittne Valdivia | GIS & Front-End Development",
     description:
-      "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
+      "GIS and front-end portfolio by Brittne Valdivia, featuring spatial analysis, web mapping, accessible interfaces, and responsive web projects.",
     siteName: "Brittne Valdivia Portfolio",
     type: "website",
     url: "https://brittnevaldivia.com",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brittne Valdivia | Front-End Developer",
+    title: "Brittne Valdivia | GIS & Front-End Development",
     description:
-      "Front-end developer portfolio featuring accessible interfaces, thoughtful UX, and web projects by Brittne Valdivia.",
+      "GIS and front-end portfolio by Brittne Valdivia, featuring spatial analysis, web mapping, accessible interfaces, and responsive web projects.",
     images: ["/twitter-image"],
   },
 };
