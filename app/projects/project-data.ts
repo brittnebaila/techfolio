@@ -1,4 +1,12 @@
-export type ProjectDetailSection =
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+};
+
+export type ProjectDetailSection = (
   | {
       type: "text";
       title: string;
@@ -9,7 +17,8 @@ export type ProjectDetailSection =
       title: string;
       intro?: string;
       items: string[];
-    };
+    }
+) & { image?: ProjectImage };
 
 export type ProjectDetail = {
   slug: string;
@@ -19,12 +28,95 @@ export type ProjectDetail = {
   cardSummary: string;
   status?: string;
   visible?: boolean;
+  heroImage?: ProjectImage;
   tags: string[];
   links?: { label: string; href: string }[];
   sections: ProjectDetailSection[];
 };
 
 const allProjects: ProjectDetail[] = [
+  {
+    slug: "stormwater-runoff-analyzer",
+    title: "Stormwater Runoff Analyzer",
+    shortTitle: "Stormwater Runoff Analyzer",
+    status: "Completed analysis",
+    summary:
+      "A Python and GIS analysis of rainfall and Mercer Creek streamflow in Bellevue, Washington. I combined a year of public hydrologic observations with a QGIS map to explore high-flow events and how streamflow relates to rainfall over time.",
+    cardSummary:
+      "Completed Python and QGIS analysis of Bellevue rainfall and Mercer Creek streamflow, comparing storm events and rainfall timing with documented results on GitHub.",
+    tags: ["Python", "pandas", "QGIS", "Data Visualization"],
+    links: [
+      { label: "Explore on GitHub", href: "https://github.com/brittnebaila/stormwater-runoff-analyzer" },
+      { label: "View Python Analysis", href: "https://github.com/brittnebaila/stormwater-runoff-analyzer/blob/main/src/analyzer.py" },
+      { label: "View Results", href: "https://github.com/brittnebaila/stormwater-runoff-analyzer/blob/main/output/hydrology_summary.csv" },
+    ],
+    heroImage: {
+      src: "/stormwater-runoff-analyzer/mercer-creek-map-4e1f5c71.png",
+      alt: "QGIS map showing Bellevue streams, the mapped drainage basin, and separate rainfall and streamflow monitoring stations",
+      width: 3507,
+      height: 2480,
+      caption: "QGIS map placing the hydrologic observations in geographic context. Data: City of Bellevue Open Data and King County Hydrologic Information Center. Basemap: © OpenStreetMap contributors.",
+    },
+    sections: [
+      {
+        type: "text",
+        title: "The Question",
+        body: [
+          "How does Mercer Creek respond to rainfall, and does looking at the previous day’s rain reveal a stronger relationship? I used this question to connect software development, environmental data analysis, and GIS in a focused local project.",
+          "The study covers the October 1, 2025–September 30, 2026 water year, using daily observations from the Mercer Creek stream gauge (COB_MCF) and Meydenbauer rain gauge (COB_RG05). King County provided the hydrologic data, and City of Bellevue datasets supplied the streams and storm drainage basins for the map.",
+        ],
+      },
+      {
+        type: "list",
+        title: "What I Built",
+        items: [
+          "A Python workflow using pandas to parse dates, standardize field names, and merge rainfall and streamflow observations by date.",
+          "Summary statistics and a 90th-percentile threshold to identify unusually high-flow days within the study period.",
+          "Same-day, one-day, and two-day rainfall-lag comparisons, supported by an individual storm-event review.",
+          "Matplotlib charts and an exported CSV summary so the analysis results can be inspected alongside the code.",
+          "A QGIS map combining streams, a drainage basin layer, monitoring stations, and an OpenStreetMap basemap.",
+        ],
+      },
+      {
+        type: "text",
+        title: "The Strongest Relationship Was with Previous-Day Rainfall",
+        body: [
+          "The correlation with streamflow was 0.618 for same-day rainfall, 0.731 for rainfall one day earlier, and 0.412 for rainfall two days earlier. Of the three timings tested, previous-day rainfall showed the strongest relationship during this water year.",
+          "This pattern is consistent with a delayed streamflow response, but it does not establish a fixed one-day response time for every storm. The comparison uses daily observations, and individual events varied.",
+        ],
+        image: {
+          src: "/stormwater-runoff-analyzer/correlation-comparison.png",
+          alt: "Bar chart comparing rainfall-streamflow correlations: same day 0.618, one-day lag 0.731, and two-day lag 0.412",
+          width: 800,
+          height: 500,
+          caption: "Pearson correlation calculated with pandas for each rainfall timing. These values describe the observed dataset, rather than a predictive model.",
+        },
+      },
+      {
+        type: "text",
+        title: "A Storm Event in Context",
+        body: [
+          "On December 8, 2025, the rain gauge recorded 1.16 inches of precipitation while streamflow was 30.87 cubic feet per second (cfs). The next day, rainfall decreased to 0.45 inches while streamflow rose to 170.7 cfs—the highest daily value in the study period.",
+          "Average streamflow across the water year was approximately 19.71 cfs. The analysis used 43.56 cfs, the dataset’s 90th percentile, to flag high-flow days. This is a relative threshold for exploring the data, not an official flood threshold.",
+        ],
+        image: {
+          src: "/stormwater-runoff-analyzer/rainfall-streamflow.png",
+          alt: "Daily rainfall and streamflow charts for October 2025 through September 2026, with a dashed high-flow threshold on the streamflow chart",
+          width: 1800,
+          height: 1200,
+          caption: "Rainfall and streamflow plotted on a shared date axis, with the 90th-percentile streamflow threshold marked for comparison.",
+        },
+      },
+      {
+        type: "text",
+        title: "What I Learned and the Limits of the Analysis",
+        body: [
+          "Combining time-series analysis with a map helped me explain both when changes occurred and where the measurements came from. The rainfall and streamflow gauges are at different locations; a single rain gauge does not measure rainfall everywhere across a drainage area.",
+          "The source data includes provisional measurements, and the study covers one water year at daily resolution. The completed work is an exploratory analysis, not a calibrated runoff or flood-forecasting model. Higher-resolution observations, more rain gauges, and watershed and impervious-surface data would help investigate the relationship further.",
+        ],
+      },
+    ],
+  },
   {
     slug: "eastside-bike-routing",
     title: "Eastside Bike Routing",

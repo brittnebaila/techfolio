@@ -3,11 +3,39 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Montserrat } from "next/font/google";
 import { getProjectBySlug, projects } from "../project-data";
+import type { ProjectImage } from "../project-data";
 import { EastsideBikeRoutingPage } from "../eastside-bike-routing";
+import { StormwaterRunoffAnalyzerPage } from "../stormwater-runoff-analyzer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
+
+function ProjectFigure({ image }: { image: ProjectImage }) {
+  return (
+    <figure className="mt-6">
+      <a
+        href={image.src}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open full-size image: ${image.alt}`}
+        className="block overflow-hidden rounded-[1rem] border border-[#0F4C45]/12 bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0F4C45]"
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 980px) 90vw, 900px"
+          className="h-auto w-full"
+        />
+      </a>
+      <figcaption className="mt-3 text-[0.76rem] leading-6 text-[#3E514D]">
+        {image.caption} Select the image to view it full size.
+      </figcaption>
+    </figure>
+  );
+}
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -1027,8 +1055,27 @@ export default async function ProjectDetailPage({
       <div className="sticky top-0 z-50">
         <div className="mx-auto w-full max-w-[980px] px-4 sm:px-6 md:px-8 lg:px-10">
           <div className="pt-4 sm:pt-5">
-            <div className="flex justify-center">
-              <div className="mx-auto flex w-fit flex-wrap items-center justify-center gap-1 rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] p-1.5 shadow-[0_12px_28px_rgba(22,43,38,0.06)]">
+            <nav aria-label="Project navigation" className="relative flex h-14 items-center justify-between rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] p-1.5 shadow-[0_12px_28px_rgba(22,43,38,0.06)] md:hidden">
+              <Link href="/" className="inline-flex h-11 items-center gap-2 rounded-full px-3 text-[0.8rem] font-semibold text-[#0F4C45] hover:bg-[#0F4C45]/8 focus-visible:outline-2 focus-visible:outline-offset-2">
+                <Image src="/home.png" alt="" width={18} height={18} />
+                Home
+              </Link>
+              <details key={project.slug} className="group">
+                <summary className="flex h-11 cursor-pointer list-none items-center gap-3 rounded-full bg-[#043439] px-4 text-[0.78rem] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F4C45] [&::-webkit-details-marker]:hidden">
+                  Browse projects
+                  <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 transition-transform group-open:rotate-180"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </summary>
+                <div className="absolute inset-x-0 top-full mt-2 rounded-2xl border border-[#0F4C45]/15 bg-[#F7F1E8] p-2 shadow-[0_12px_28px_rgba(22,43,38,0.12)]">
+                  {projects.map((navProject) => (
+                    <Link key={navProject.slug} href={`/projects/${navProject.slug}`} aria-current={navProject.slug === project.slug ? "page" : undefined} className={`flex min-h-11 items-center rounded-xl px-4 py-3 text-[0.8rem] font-semibold focus-visible:outline-2 focus-visible:-outline-offset-2 ${navProject.slug === project.slug ? "bg-[#043439] text-white" : "text-[#0F4C45] hover:bg-[#0F4C45]/8"}`}>
+                      {navProject.shortTitle}
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            </nav>
+            <div className="hidden justify-center md:flex">
+              <nav aria-label="Project navigation" className="mx-auto flex w-fit flex-wrap items-center justify-center gap-1 rounded-full border border-[#0F4C45]/12 bg-[#F7F1E8] p-1.5 shadow-[0_12px_28px_rgba(22,43,38,0.06)]">
                 <Link
                   href="/"
                   aria-label="Home"
@@ -1046,6 +1093,7 @@ export default async function ProjectDetailPage({
                   <Link
                     key={navProject.slug}
                     href={`/projects/${navProject.slug}`}
+                    aria-current={navProject.slug === project.slug ? "page" : undefined}
                     className={`rounded-full px-3.5 py-2 text-[0.72rem] font-semibold transition sm:px-4 sm:text-[0.78rem] ${
                       navProject.slug === project.slug
                         ? "bg-[#043439] text-white shadow-[0_10px_24px_rgba(4,52,57,0.2)]"
@@ -1055,7 +1103,7 @@ export default async function ProjectDetailPage({
                     {navProject.shortTitle}
                   </Link>
                 ))}
-              </div>
+              </nav>
             </div>
           </div>
         </div>
@@ -1065,7 +1113,7 @@ export default async function ProjectDetailPage({
         <div className="flex flex-wrap gap-3">
           {project.links
             ?.filter((link) =>
-              project.slug === "eastside-bike-routing"
+              project.slug === "eastside-bike-routing" || project.slug === "stormwater-runoff-analyzer"
                 ? false
                 : project.slug === "streetease" ? link.label !== "View Code" : true
             )
@@ -1082,7 +1130,9 @@ export default async function ProjectDetailPage({
             ))}
         </div>
 
-        {project.slug === "eastside-bike-routing" ? (
+        {project.slug === "stormwater-runoff-analyzer" ? (
+          <StormwaterRunoffAnalyzerPage project={project} />
+        ) : project.slug === "eastside-bike-routing" ? (
           <EastsideBikeRoutingPage project={project} />
         ) : project.slug === "streetease" ? (
           <StreetEasePage
@@ -1108,7 +1158,7 @@ export default async function ProjectDetailPage({
           <>
             <header className="mt-7 max-w-[680px]">
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[#0F4C45] sm:text-[0.74rem]">
-                Project Detail
+                Project Detail{project.status ? ` · ${project.status}` : ""}
               </p>
 
               <h1 className="mt-3 text-[1.9rem] font-extrabold leading-[0.98] tracking-tight sm:text-[2.3rem] lg:text-[2.8rem]">
@@ -1131,9 +1181,7 @@ export default async function ProjectDetailPage({
               ))}
             </div>
 
-            <section className="mt-8 rounded-[1.25rem] border border-dashed border-[#0F4C45]/18 bg-[#F7F1E8] px-4 py-10 text-center text-[0.92rem] font-semibold text-[#6B7B77] sm:py-12">
-              Project image gallery placeholder
-            </section>
+            {project.heroImage ? <ProjectFigure image={project.heroImage} /> : null}
 
             <div className="mt-8 grid grid-cols-1 gap-5 lg:gap-6">
               {project.sections.map((section) => (
@@ -1169,6 +1217,7 @@ export default async function ProjectDetailPage({
                       </ul>
                     </div>
                   )}
+                  {section.image ? <ProjectFigure image={section.image} /> : null}
                 </section>
               ))}
             </div>

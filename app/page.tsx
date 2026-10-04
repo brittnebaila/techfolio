@@ -33,6 +33,12 @@ const projectCardImages: Record<
   string,
   { src: string; alt: string; width: number; height: number; contain?: boolean }
 > = {
+  "Stormwater Runoff Analyzer": {
+    src: "/stormwater-runoff-analyzer/mercer-creek-map-4e1f5c71.png",
+    alt: "Mercer Creek rainfall and streamflow analysis map in QGIS",
+    width: 3507,
+    height: 2480,
+  },
   "Eastside Bike Routing": {
     src: "/eastside-bike-routing/ne24th-elevation-profile.png",
     alt: "NE 24th Street map and elevation profile showing a climb followed by a descent",
@@ -435,7 +441,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:mt-10 lg:gap-4">
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 lg:mt-10 lg:gap-4">
             {projects.map((project) => {
               const image = projectCardImages[project.shortTitle];
 
@@ -452,7 +458,7 @@ export default function Home() {
                           src={image.src}
                           alt={image.alt}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1320px) 50vw, 600px"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                           className={`transition-transform duration-300 group-hover:scale-[1.02] ${
                             image.contain ? "object-contain p-2" : "object-cover"
                           }`}
