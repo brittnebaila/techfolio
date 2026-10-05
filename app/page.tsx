@@ -295,7 +295,7 @@ export default function Home() {
         id="home"
         className="relative min-h-screen scroll-mt-10 bg-[#F7F1E8] sm:scroll-mt-14"
       >
-        <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 pb-8 pt-20 sm:px-8 sm:py-10 md:px-10 md:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 lg:py-10 xl:max-w-[1220px] xl:gap-10 xl:px-14">
+        <div className="mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-6 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 md:px-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-12 xl:max-w-[1220px] xl:gap-10 xl:px-14">
           <div className="mx-auto w-full max-w-[420px] text-left">
             <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#0F4C45] sm:text-[0.74rem] lg:text-[0.8rem]">
               GIS & Front-End Development
