@@ -1,4 +1,8 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
+export const alt = "Brittne Valdivia’s GIS and front-end portfolio, featuring her illustrated avatar against a map";
 
 export const size = {
   width: 1200,
@@ -7,7 +11,9 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const avatar = await readFile(join(process.cwd(), "public/avatar2.png"), "base64");
+
   return new ImageResponse(
     (
       <div
@@ -112,32 +118,22 @@ export default function OpenGraphImage() {
 
             <div
               style={{
-                width: 300,
-                height: 300,
-                borderRadius: 999,
-                background: "#DDE7DE",
+                width: 400,
+                height: 377,
+                flexShrink: 0,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 22px 48px rgba(22,43,38,0.08)",
               }}
             >
-              <div
-                style={{
-                  width: 206,
-                  height: 206,
-                  borderRadius: 999,
-                  background: "#FBF7EF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#043439",
-                  fontSize: 122,
-                  fontWeight: 800,
-                }}
-              >
-                B
-              </div>
+              {/* ImageResponse renders a PNG directly; next/image is not used here. */}
+              <img
+                src={`data:image/png;base64,${avatar}`}
+                alt="Brittne’s illustrated avatar against a map"
+                width={400}
+                height={377}
+                style={{ objectFit: "contain" }}
+              />
             </div>
           </div>
 
